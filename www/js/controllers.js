@@ -1,6 +1,18 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, Logs) {
+  $scope.$on('$ionicView.enter', function(e) {
+  });
+  $scope.logs = Logs.all();
+  $scope.remove = function(log){
+    Logs.remove(log);
+  };
+  $scope.addLog = function() {
+    console.log("scope.logs", $scope.logs);
+    console.log('add log function called');
+    console.log($scope);
+    $scope.logs.push({temp: $scope.temp, time: $scope.time});
+  }
 
 })
 

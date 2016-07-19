@@ -1,14 +1,35 @@
-<!-- Center content -->
-<ion-side-menu-content>
-  <ion-header-bar class="bar-dark">
-    <h1 class="title">Todo</h1>
-  </ion-header-bar>
-  <ion-content>
-    <!-- our list and list items -->
+<ion-view view-title="Add a new log">
+  <ion-content class="padding">
+    <div ng-controller="DashCtrl as vm" class="container">
+
+    <h2>Make a new log</h2>
+    <form ng-submit="addLog()">
+      <label class="item item-input">
+        <span class="input-label">Temperature</span>
+        <input ng-model="temp" placeholder="97.05" type="number">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input ng-model="time" type="date">
+      </label>
+      <button type="submit" class="button button-positive">Save</button>
+    </form>
+    <br>
+
+    <h2>Old Logs:</h2>
+
+
     <ion-list>
-      <ion-item ng-repeat="task in tasks">
-        {{task.title}}
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="log in logs" type="item-text-wrap" href="#/tab/chats/{{log.id}}">
+        <h2>{{log.temp}}</h2>
+        <p>{{log.time}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button" ng-click="remove(log)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
+  </div>
   </ion-content>
-</ion-side-menu-content>
+</ion-view>
