@@ -8,24 +8,53 @@ angular.module('starter.controllers', [])
     Logs.remove(log);
   };
   $scope.addLog = function() {
-    console.log("scope.logs", $scope.logs);
-    console.log('add log function called');
-    console.log($scope);
     $scope.logs.push({temp: $scope.temp, time: $scope.time});
-  }
-
+  };
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('UsersCtrl', function($scope, Users){
+    $scope.$on('$ionicView.enter', function(e) {
+    });
 
-  $scope.chats = Chats.all();
+    $scope.users = Users.users;
+    console.log(Users.users);
+    $scope.addUser = function(){
+      $scope.users.$add({
+        "name": $scope.name,
+        "email": $scope.email,
+        "password": $scope.password,
+        "logs": [{
+          temp: 97.0,
+          time: Date.now(),
+        }, {
+          temp: 97.1,
+          time: Date.now(),
+        }, {
+          temp: 97.2,
+          time: Date.now(),
+        }, {
+          temp: 97.3,
+          time: Date.now(),
+        }, {
+          temp: 97.4,
+          time: Date.now(),
+        }]
+        });
+      }
+
+
+    console.log(Users.users)
+    $scope.chats = Users.all();
+    $scope.remove = function(chat) {
+      Chats.remove(chat);
+    };
+})
+
+.controller('ChatsCtrl', function($scope, Users) {
+  $scope.$on('$ionicView.enter', function(e) {
+  });
+  console.log(Users.users)
+  $scope.chats = Users.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
@@ -37,6 +66,8 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
-    enableFriends: true
+    name: "Stephanie Wilkinson",
+    enableFriends: true,
+    email: "what.happens@gmail.com"
   };
 });

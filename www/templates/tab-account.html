@@ -1,8 +1,22 @@
 <ion-view view-title="Account">
   <ion-content>
+    <div class="list card">
+      <h3>About you</h3>
+      <a href="#" class="item item-icon-left">
+        <i class="icon ion-person"></i>
+        {{settings.name}}
+      </a>
+
+      <a href="#" class="item item-icon-left">
+        <i class="icon ion-email"></i>
+        {{settings.email}}
+      </a>
+
+    </div>
+    <h3>Preferences</h3>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
+    <ion-toggle  ng-model="settings.enableFriend">
+        Birth Control  |  Pregnancy
     </ion-toggle>
     </ion-list>
   </ion-content>
