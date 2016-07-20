@@ -8,7 +8,7 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return users;
+      return usersFb;
     },
     remove: function(chat) {
       users.splice(users.indexOf(chat), 1);

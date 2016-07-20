@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
     });
 
     $scope.users = Users.users;
-    console.log(Users.users);
+    console.log('Users array',Users.users);
     $scope.addUser = function(){
       $scope.users.$add({
         "name": $scope.name,
@@ -41,9 +41,6 @@ angular.module('starter.controllers', [])
         }]
         });
       }
-
-
-    console.log(Users.users)
     $scope.chats = Users.all();
     $scope.remove = function(chat) {
       Chats.remove(chat);
@@ -53,7 +50,6 @@ angular.module('starter.controllers', [])
 .controller('ChatsCtrl', function($scope, Users) {
   $scope.$on('$ionicView.enter', function(e) {
   });
-  console.log(Users.users)
   $scope.chats = Users.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
