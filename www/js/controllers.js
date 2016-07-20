@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Logs) {
+.controller('DashCtrl', function($scope, Logs, Users, UserRef) {
+  var authData = UserRef.getAuth();
+  console.log(authData);
   $scope.$on('$ionicView.enter', function(e) {
   });
   $scope.logs = Logs.all();
@@ -12,10 +14,9 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('UsersCtrl', function($scope, Auth, Users){
+.controller('UsersCtrl', function($scope, Auth, Users, UserRef){
     $scope.$on('$ionicView.enter', function(e) {
     });
-
     $scope.login = function() {
       Auth.$authWithOAuthPopup("google", function(error, authData){
         if (error){
@@ -27,7 +28,9 @@ angular.module('starter.controllers', [])
         }
       })
     }
-
+    $scope.logout = function(){
+      UserRef.unauth();
+    }
     $scope.users = Users.users;
     Auth.$onAuth(function(authData) {
       if (authData === null) {

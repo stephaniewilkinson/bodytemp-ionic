@@ -3,26 +3,12 @@ angular.module('starter.services', [])
 .factory('Users', function($firebaseArray) {
   var usersRef = new Firebase("https://bodytemp.firebaseio.com/users");
   // Might use a resource here that returns a JSON array
-
   return $firebaseArray(usersRef);
+})
 
-  // return {
-  //   all: function() {
-  //     return usersFb;
-  //   },
-  //   remove: function(chat) {
-  //     users.splice(users.indexOf(chat), 1);
-  //   },
-  //   get: function(chatId) {
-  //     for (var i = 0; i < users.length; i++) {
-  //       if (users[i].id === parseInt(chatId)) {
-  //         return users[i];
-  //       }
-  //     }
-  //     return null;
-  //   },
-  //   users: usersFb.users
-  // };
+.factory('UserRef', function(){
+  var ref = new Firebase("https//bodytemp.firebaseio.com/users");
+  return ref;
 })
 
 .factory("Auth", function($firebaseAuth) {
