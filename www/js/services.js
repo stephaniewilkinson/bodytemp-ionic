@@ -4,26 +4,27 @@ angular.module('starter.services', [])
   var usersRef = new Firebase("https://bodytemp.firebaseio.com/users");
   // Might use a resource here that returns a JSON array
 
-  var usersFb = $firebaseArray(usersRef);
+  return $firebaseArray(usersRef);
 
-  return {
-    all: function() {
-      return usersFb;
-    },
-    remove: function(chat) {
-      users.splice(users.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < users.length; i++) {
-        if (users[i].id === parseInt(chatId)) {
-          return users[i];
-        }
-      }
-      return null;
-    },
-    users: usersFb
-  };
+  // return {
+  //   all: function() {
+  //     return usersFb;
+  //   },
+  //   remove: function(chat) {
+  //     users.splice(users.indexOf(chat), 1);
+  //   },
+  //   get: function(chatId) {
+  //     for (var i = 0; i < users.length; i++) {
+  //       if (users[i].id === parseInt(chatId)) {
+  //         return users[i];
+  //       }
+  //     }
+  //     return null;
+  //   },
+  //   users: usersFb.users
+  // };
 })
+
 .factory("Auth", function($firebaseAuth) {
   var usersRef = new Firebase("https//bodytemp.firebaseio.com/users");
   return $firebaseAuth(usersRef);

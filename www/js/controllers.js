@@ -17,19 +17,35 @@ angular.module('starter.controllers', [])
     });
 
     $scope.login = function() {
-      Auth.$authWithOAuthRedirect("google");
+      Auth.$authWithOAuthPopup("google", function(error, authData){
+        if (error){
+          Auth.$authWithOAuthRedirect("google", function(error){
+            console.log("couldn't log the user in with either method")
+          })
+        } else if (authData){
+          console.log('users successfully logged in')
+        }
+      })
     }
 
+    $scope.users = Users.users;
     Auth.$onAuth(function(authData) {
       if (authData === null) {
         console.log("Not logged in yet");
       } else {
+        //if they are a new user, add them to the DB
         console.log("Logged in as", authData);
+        console.log("users array", Users)
+        Users.$add({
+          "name": authData.google.displayName,
+          "firstName": authData.google.cachedUserProfile.given_name,
+          "gender": authData.google.cachedUserProfile.gender,
+          "googleUID": authData.uid,
+          "picture": authData.google.cachedUserProfile.picture,
+        });
       }
-      $scope.authData = authData; // This will display the user's name in our view
     });
 
-    $scope.users = Users.users;
     $scope.addUser = function(){
       $scope.users.$add({
         "name": $scope.name,
@@ -53,7 +69,7 @@ angular.module('starter.controllers', [])
         }]
         });
       }
-    $scope.chats = Users.all();
+    // $scope.chats = Users.all();
     $scope.remove = function(chat) {
       Chats.remove(chat);
     };
