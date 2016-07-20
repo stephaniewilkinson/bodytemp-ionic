@@ -17,17 +17,19 @@ angular.module('starter.controllers', [])
     });
 
     $scope.login = function() {
-      Auth.$authWithOAuthPopup("google", function(error, authData) {
-        if (error) {
-          console.log("Login Failed!", error);
-        } else {
-          console.log("Authenticated successfully with payload:", authData);
-        }
-      });
+      Auth.$authWithOAuthRedirect("google");
     }
 
+    Auth.$onAuth(function(authData) {
+      if (authData === null) {
+        console.log("Not logged in yet");
+      } else {
+        console.log("Logged in as", authData);
+      }
+      $scope.authData = authData; // This will display the user's name in our view
+    });
+
     $scope.users = Users.users;
-    console.log('Users array',Users.users);
     $scope.addUser = function(){
       $scope.users.$add({
         "name": $scope.name,
