@@ -1,8 +1,10 @@
 <ion-view view-title="Signup">
   <ion-content class="padding">
     <div ng-controller="UsersCtrl" class="container">
-
-    <form ng-submit="addUser()">
+      <button ng-click="login()" class="button button-royal">
+        Sign in with google
+      </button>
+      <form ng-submit="addUser()">
       <label class="item item-input">
         <span class="input-label">Name</span>
         <input ng-model="name" placeholder="Jane Doe" type="text">

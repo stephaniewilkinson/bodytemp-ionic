@@ -24,6 +24,10 @@ angular.module('starter.services', [])
     users: usersFb
   };
 })
+.factory("Auth", function($firebaseAuth) {
+  var usersRef = new Firebase("https//bodytemp.firebaseio.com/users");
+  return $firebaseAuth(usersRef);
+})
 
 .factory('Logs', function($firebaseArray) {
   // Might use a resource here that returns a JSON array
@@ -32,19 +36,19 @@ angular.module('starter.services', [])
   // Some fake testing data
   var logs = [{
     temp: 97.0,
-    time: Date.now(),
+    time: new Date().toDateString(),
   }, {
     temp: 97.1,
-    time: Date.now(),
+    time: new Date().toDateString(),
   }, {
     temp: 97.2,
-    time: Date.now(),
+    time: new Date().toDateString(),
   }, {
     temp: 97.3,
-    time: Date.now(),
+    time: new Date().toDateString(),
   }, {
     temp: 97.4,
-    time: Date.now(),
+    time: new Date().toDateString(),
   }];
 
   return {

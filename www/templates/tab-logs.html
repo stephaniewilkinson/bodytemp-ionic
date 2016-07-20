@@ -20,7 +20,7 @@
 
 
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="log in logs" type="item-text-wrap">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="log in logs |  orderBy:'time'" type="item-text-wrap">
         <a href="#/tab/logs/{{log.id}}"><h2>{{log.temp}}</h2></a>
         <p>{{log.time}}</p>
         <button type="button" name="button" ng-click="remove(log)">Delete</button>

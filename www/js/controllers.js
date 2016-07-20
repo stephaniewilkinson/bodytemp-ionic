@@ -8,13 +8,23 @@ angular.module('starter.controllers', [])
     Logs.remove(log);
   };
   $scope.addLog = function() {
-    $scope.logs.push({temp: $scope.temp, time: $scope.time});
+    $scope.logs.push({temp: $scope.temp, time: $scope.time.toString()});
   };
 })
 
-.controller('UsersCtrl', function($scope, Users){
+.controller('UsersCtrl', function($scope, Auth, Users){
     $scope.$on('$ionicView.enter', function(e) {
     });
+
+    $scope.login = function() {
+      Auth.$authWithOAuthPopup("google", function(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+        }
+      });
+    }
 
     $scope.users = Users.users;
     console.log('Users array',Users.users);
