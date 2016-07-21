@@ -62,47 +62,32 @@ angular.module('starter.services', [])
   return $firebaseAuth(usersRef);
 })
 
-.factory('Logs', function($firebaseArray) {
-  // Might use a resource here that returns a JSON array
-  // var logsRef = new Firebase("https://bodytemp.firebaseio.com/logs");
+.factory('Logs', function($firebaseArray, Firebase) {
+  var ref = new Firebase("https://bodytemp.firebaseio.com/");
+  var authData = ref.getAuth();
+  var uid = authData.uid;
+  console.log(uid);
 
-  // Some fake testing data
-  var logs = [{
-    temp: 98.2,
-    time: new Date().toDateString(),
-  }, {
-    temp: 97.1,
-    time: new Date().toDateString(),
-  }, {
-    temp: 97.5,
-    time: new Date().toDateString(),
-  },  {
-    temp: 97.5,
-    time: new Date().toDateString(),
-  }, {
-    temp: 97.3,
-    time: new Date().toDateString(),
-  }, {
-    temp: 96.9,
-    time: new Date().toDateString(),
-  }];
+  var logData = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
+  var logsArray = $firebaseArray(logData);
+  console.log(logsArray);
 
   return {
     all: function() {
-      return logs;
+      return logsArray;
     },
     temp: function(){
-      return logs.map(function(log){return log.temp});
+      return logsArray.map(function(log){return log.temp});
     },
     date: function(){
-      return logs.map(function(log){return log.time});
+      return logsArray.map(function(log){return log.time});
     },
     remove: function(log) {
-      logs.splice(logs.indexOf(log), 1);
+      logsArray.splice(logsArray.indexOf(log), 1);
     },
     get: function(logId) {
-      for (var i = 0; i < logs.length; i++) {
-        if (logs[i].id === parseInt(logId)) {
+      for (var i = 0; i < logsArray.length; i++) {
+        if (logsArray[i].id === parseInt(logId)) {
           return logs[i];
         }
       }
