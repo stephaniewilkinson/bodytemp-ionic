@@ -1,13 +1,12 @@
 angular.module('starter.controllers', [])
 
 .controller('LogsCtrl', function($scope, Logs, Users, UserRef, Chart) {
+  $scope.logTemps = Logs.all().map(function(log){return log.temp});
+  $scope.logDays = Logs.all().map(function(log){return log.time});
   $scope.$on('$ionicView.beforeEnter', function(e) {
     var ctx = document.getElementById("myChart");
-    var labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
-    var data = [12, 19, 3, 5, 2, 3];
-    Chart(ctx, data, labels);
+    Chart(ctx, $scope.logTemps, $scope.logDays);
   });
-  $scope.logs = Logs.all();
   $scope.remove = function(log){
     Logs.remove(log);
   };
@@ -73,7 +72,7 @@ angular.module('starter.controllers', [])
   $scope.calendar = {};
   var events = [];
 
-  var newArray = Logs.map(function(el, i, array){
+  var newArray = Logs.all().map(function(el, i, array){
     el.title = el.temp;
     el.startTime = el.time;
     el.endTime = el.time + 1;
