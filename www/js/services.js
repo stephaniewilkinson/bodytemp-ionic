@@ -71,6 +71,9 @@ angular.module('starter.services', [])
   }, {
     temp: 97.5,
     time: new Date().toDateString(),
+  },  {
+    temp: 97.5,
+    time: new Date().toDateString(),
   }, {
     temp: 97.3,
     time: new Date().toDateString(),
@@ -83,6 +86,12 @@ angular.module('starter.services', [])
     all: function() {
       return logs;
     },
+    temp: function(){
+      return logs.map(function(log){return log.temp});
+    },
+    date: function(){
+      return logs.map(function(log){return log.time});
+    },
     remove: function(log) {
       logs.splice(logs.indexOf(log), 1);
     },
@@ -94,6 +103,5 @@ angular.module('starter.services', [])
       }
       return null;
     },
-    // logs: $firebaseArray(logsRef)
   };
 });

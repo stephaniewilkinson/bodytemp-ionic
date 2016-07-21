@@ -1,8 +1,8 @@
 angular.module('starter.controllers', [])
 
 .controller('LogsCtrl', function($scope, Logs, Users, UserRef, Chart) {
-  $scope.logTemps = Logs.all().map(function(log){return log.temp});
-  $scope.logDays = Logs.all().map(function(log){return log.time});
+  $scope.logTemps = Logs.temp();
+  $scope.logDays = Logs.date();
   $scope.$on('$ionicView.beforeEnter', function(e) {
     var ctx = document.getElementById("myChart");
     Chart(ctx, $scope.logTemps, $scope.logDays);
@@ -68,16 +68,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('CalCtrl', function($scope, Logs){
-  console.log(Logs);
-  $scope.calendar = {};
-  var events = [];
-
-  var newArray = Logs.all().map(function(el, i, array){
+  Logs.all().map(function(el, i, array){
     el.title = el.temp;
     el.startTime = el.time;
     el.endTime = el.time + 1;
     el.allDay = false;
     delete el.temp;
   });
-
+  $scope.eventSource = Logs.all()
 })

@@ -1,13 +1,12 @@
 <ion-view view-title="Signup">
   <ion-content class="padding">
-    <div ng-controller="UsersCtrl" class="container">
-      <button ng-click="login()" class="button button-royal">
-        Sign in with google
-      </button>
+    <div ng-controller="UsersCtrl" class="container signin">
+      <img class="google" width="66%" ng-click="login()"src="./img/googlesignin.png" alt="" />
+      <h1>Join my app</h1>
       <button ng-click="logout()" class="button button-royal">
         Sign out
       </button>
-    <br>
+    </div>
   </div>
   </ion-content>
 </ion-view>
