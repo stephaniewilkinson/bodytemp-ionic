@@ -83,7 +83,7 @@ angular.module('starter.services', [])
       return logsArray.map(function(log){return log.time});
     },
     remove: function(log) {
-      logsArray.splice(logsArray.indexOf(log), 1);
+      logsArray.$remove(log);
     },
     get: function(logId) {
       for (var i = 0; i < logsArray.length; i++) {

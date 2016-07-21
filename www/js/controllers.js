@@ -20,16 +20,16 @@ angular.module('starter.controllers', [])
   $scope.remove = function(log){
     Logs.remove(log);
   };
+  var currentUserRef = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
   $scope.addLog = function() {
-    $scope.logs.push({temp: $scope.temp, time: $scope.time.toString()});
+    // $scope.logs.push({temp: $scope.temp, time: $scope.time.toString()});
+    currentUserRef.push({
+      'temp': $scope.temp,
+      'time': $scope.time.toString()
+    });
   };
 
   ////PERSISTING LOGS TO Firebase
-  var currentUserRef = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
-  currentUserRef.push({
-    'temp': 89,
-    'time': 200,
-  });
 })
 
 .controller('UsersCtrl', function($scope, Auth, Users, UserRef){

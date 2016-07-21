@@ -1,5 +1,9 @@
 <ion-view view-title="Add a new log">
-  <ion-content class="padding">
+  <div class="bar bar-header bar-positive">
+    <button class="button button-icon icon ion-chevron-left" ng-show="showBackButton()" ng-click="goBack()"></button>
+    <h1 class="title">忘记密码</h1>
+  </div>
+  <ion-content class="has-header padding">
     <div ng-controller="LogsCtrl" class="container">
 
     <h2>Make a new log</h2>
