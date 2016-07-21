@@ -5,6 +5,11 @@ angular.module('starter.services', [])
   return $firebaseArray(usersRef);
 })
 
+.factory('Firebase', function() {
+  var ref = new Firebase("https://bodytemp.firebaseio.com");
+  return ref;
+})
+
 .factory('Chart', function(){
   var chartMaker = {};
   var buildChart = function(ctx, dataSet, labels){

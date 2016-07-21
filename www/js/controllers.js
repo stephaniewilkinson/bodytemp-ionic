@@ -1,6 +1,11 @@
 angular.module('starter.controllers', [])
 
-.controller('LogsCtrl', function($scope, Logs, Users, UserRef, Chart) {
+.controller('LogsCtrl', function($scope, Firebase, Logs, Users, UserRef, Chart) {
+  var ref = new Firebase("https://bodytemp.firebaseio.com");
+  var authData = ref.getAuth();
+  if (authData) {
+    console.log("Authenticated user with uid:", authData.uid);
+  }
   $scope.logTemps = Logs.temp();
   $scope.logDays = Logs.date();
   $scope.$on('$ionicView.beforeEnter', function(e) {
@@ -16,6 +21,17 @@ angular.module('starter.controllers', [])
 })
 
 .controller('UsersCtrl', function($scope, Auth, Users, UserRef){
+  UserRef.set({
+    alanisawesome: {
+      date_of_birth: "June 23, 1912",
+      full_name: "Alan Turing"
+    },
+    gracehop: {
+      date_of_birth: "December 9, 1906",
+      full_name: "Grace Hopper"
+    }
+    });
+
     $scope.$on('$ionicView.enter', function(e) {
     });
 
@@ -42,17 +58,16 @@ angular.module('starter.controllers', [])
     Auth.$onAuth(function(authData) {
       if (authData === null) {
         console.log("Not logged in yet");
-      } else if (authData){
-        console.log('this user is currently signed in');
       } else {
+        console.log('this user is currently signed in');
         //if they are a new user, add them to the DB
         console.log("Logged in as", authData);
-        console.log("users array", Users)
-        Users.$add({
+        var uid = authData.uid.toString();
+        console.log("users array", Users);
+        UserRef.child(uid).set({
           "name": authData.google.displayName,
           "firstName": authData.google.cachedUserProfile.given_name,
-          "gender": authData.google.cachedUserProfile.gender,
-          "googleUID": authData.uid,
+          // "gender": authData.google.cachedUserProfile.gender,
           "picture": authData.google.cachedUserProfile.picture,
         });
       }
