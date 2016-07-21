@@ -9,8 +9,9 @@ angular.module('starter.controllers', [])
 
   ////PASS LOG DATA TO CHART
   $scope.logTemps = Logs.temp();
+  console.log(Logs.temp());
   $scope.logDays = Logs.date();
-  $scope.$on('$ionicView.beforeEnter', function(e) {
+  $scope.$on('$ionicView.afterEnter', function(e) {
     var ctx = document.getElementById("myChart");
     Chart(ctx, $scope.logTemps, $scope.logDays);
   });
@@ -20,9 +21,9 @@ angular.module('starter.controllers', [])
   $scope.remove = function(log){
     Logs.remove(log);
   };
+  ////Persist
   var currentUserRef = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
   $scope.addLog = function() {
-    // $scope.logs.push({temp: $scope.temp, time: $scope.time.toString()});
     currentUserRef.push({
       'temp': $scope.temp,
       'time': $scope.time.toString()
@@ -71,10 +72,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AccountCtrl', function($scope) {
+  ////AUTH
+  var ref = new Firebase("https://bodytemp.firebaseio.com/");
+  var authData = ref.getAuth();
+  var uid = authData.uid.toString();
   $scope.settings = {
-    name: "Stephanie Wilkinson",
-    enableFriends: true,
-    email: "what.happens@gmail.com"
+    name: authData.google.displayName,
+    picture: authData.google.profileImageURL,
+    pregnancy: true,
   };
 })
 

@@ -1,23 +1,21 @@
-<ion-view view-title="Account">
+<ion-view view-title="Profile">
   <ion-content>
     <div class="list card">
-      <h3>About you</h3>
-      <a href="#" class="item item-icon-left">
+      <div class="item item-image">
+          <img width="50%" ng-src="{{settings.picture}}" />
+      </div>
+      <a class="item item-icon-left">
         <i class="icon ion-person"></i>
         {{settings.name}}
-      </a>
-
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-email"></i>
-        {{settings.email}}
       </a>
 
     </div>
     <h3>Preferences</h3>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriend">
+    <ion-toggle  ng-model="settings.pregnancy">
         Birth Control  |  Pregnancy
     </ion-toggle>
     </ion-list>
+
   </ion-content>
 </ion-view>
