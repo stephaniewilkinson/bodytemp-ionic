@@ -1,23 +1,27 @@
 <ion-view view-title="Dashboard">
-  <ion-content class="padding" ng-controller="DashCtrl">
-    <div class="container" >
-
-      <div class="card">
-    <div class="item item-divider">
-        A line chart
-    </div>
-    <div class="item item-text-wrap">
-        <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
-    </div>
-</div>
-<div class="card">
-    <div class="item item-divider">
-        A bar chart
-    </div>
-    <div class="item item-text-wrap">
-        <canvas id="bar" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
-    </div>
-</div>
-  </div>
+  <ion-content class="padding" ng-controller="LogsCtrl">
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
   </ion-content>
 </ion-view>

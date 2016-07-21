@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.services', 'ui.rCalendar', 'firebase'])
+angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.services', 'ui.rCalendar', 'firebase', 'ngAnimate'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -44,7 +44,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        controller: 'LogsCtrl'
       }
     }
   })
@@ -53,7 +53,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
     views: {
       'tab-signup': {
         templateUrl: 'templates/tab-signup.html',
-        controller: 'DashCtrl'
+        controller: 'UsersCtrl'
       }
     }
   })
@@ -63,7 +63,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
       views: {
         'tab-calendar': {
           templateUrl: 'templates/tab-calendar.html',
-          controller: 'ChatsCtrl'
+          controller: 'CalCtrl'
         }
       }
     })
@@ -81,7 +81,7 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
       views: {
         'tab-logs': {
           templateUrl: 'templates/tab-logs.html',
-          controller: 'DashCtrl'
+          controller: 'LogsCtrl'
         }
       }
     })
