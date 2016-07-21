@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.services', 'ui.rCalendar', 'firebase', 'ngAnimate'])
+angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.services', 'ui.rCalendar', 'firebase', 'ngAnimate', 'ionic-material'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -96,6 +96,6 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/signup');
 
 });
