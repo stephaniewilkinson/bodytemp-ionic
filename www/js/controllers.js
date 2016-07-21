@@ -1,38 +1,37 @@
 angular.module('starter.controllers', [])
 
 .controller('LogsCtrl', function($scope, Firebase, Logs, Users, UserRef, Chart) {
-
-  ////AUTH
-  var ref = new Firebase("https://bodytemp.firebaseio.com/");
+  var ref = new Firebase("https://bodytemp.firebaseio.com");
   var authData = ref.getAuth();
-  var uid = authData.uid.toString();
-
-  ////PASS LOG DATA TO CHART
+  if (authData) {
+    console.log("Authenticated user with uid:", authData.uid);
+  }
   $scope.logTemps = Logs.temp();
   $scope.logDays = Logs.date();
   $scope.$on('$ionicView.beforeEnter', function(e) {
     var ctx = document.getElementById("myChart");
     Chart(ctx, $scope.logTemps, $scope.logDays);
   });
-
-  ////LOG METHODS
-  $scope.logs = Logs.all();
   $scope.remove = function(log){
     Logs.remove(log);
   };
   $scope.addLog = function() {
     $scope.logs.push({temp: $scope.temp, time: $scope.time.toString()});
   };
-
-  ////PERSISTING LOGS TO Firebase
-  var currentUserRef = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
-  currentUserRef.push({
-    'temp': 89,
-    'time': 200,
-  });
 })
 
 .controller('UsersCtrl', function($scope, Auth, Users, UserRef){
+  UserRef.set({
+    alanisawesome: {
+      date_of_birth: "June 23, 1912",
+      full_name: "Alan Turing"
+    },
+    gracehop: {
+      date_of_birth: "December 9, 1906",
+      full_name: "Grace Hopper"
+    }
+    });
+
     $scope.$on('$ionicView.enter', function(e) {
     });
 
@@ -48,7 +47,8 @@ angular.module('starter.controllers', [])
         }
       })
     }
-
+    var authData = UserRef.getAuth();
+    console.log('authdata', authData);
     ////LOGOUT
     $scope.logout = function(){
       UserRef.unauth();
@@ -59,8 +59,12 @@ angular.module('starter.controllers', [])
       if (authData === null) {
         console.log("Not logged in yet");
       } else {
+        console.log('this user is currently signed in');
+        //if they are a new user, add them to the DB
+        console.log("Logged in as", authData);
         var uid = authData.uid.toString();
-        UserRef.child(uid).update({
+        console.log("users array", Users);
+        UserRef.child(uid).set({
           "name": authData.google.displayName,
           "firstName": authData.google.cachedUserProfile.given_name,
           // "gender": authData.google.cachedUserProfile.gender,

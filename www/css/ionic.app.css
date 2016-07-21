@@ -1,11 +1,4 @@
 @charset "UTF-8";
-h1 {
-  font-family: 'HelloBeautiful', monospace;
-}
-
-.html {
-  background-color: #332532;
-}
 /*
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
