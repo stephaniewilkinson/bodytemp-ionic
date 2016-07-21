@@ -4,6 +4,8 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
+  background-color: #332532;
+
 }
 
 
@@ -17,4 +19,8 @@
 
 h1 {
   font-family: 'HelloBeautiful', monospace;
+}
+
+html {
+  background-color: #332532;
 }
