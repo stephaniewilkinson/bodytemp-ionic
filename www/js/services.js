@@ -83,6 +83,25 @@ angular.module('starter.services', [])
   });
 
   return {
+    calendar: function(){
+      console.log(this.all);
+      // return [{
+      //           startTime: new Date(Date.UTC(2016, 6, 8)),
+      //           endTime: new Date(Date.UTC(2016, 6, 9)),
+      //           allDay: false
+      //         },
+      //         {
+      //           startTime: new Date(Date.UTC(2016, 6, 8)),
+      //           endTime: new Date(Date.UTC(2016, 6, 9)),
+      //           allDay: false
+      //         },
+      //         {
+      //           startTime: new Date(Date.UTC(2016, 6, 8)),
+      //           endTime: new Date(Date.UTC(2016, 6, 9)),
+      //           allDay: false
+      //         },
+      //       ];
+    },
     all: function() {
       return logsArray;
     },
