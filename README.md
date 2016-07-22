@@ -28,6 +28,9 @@ https://www.pivotaltracker.com/n/projects/1660453
 + Bower
 + Npm
 
+## Early version
+
+![What the app looked like at first](http://imgur.com/a/jnKPb)
 ## Screenshots
 
 ![Alt text](https://lh3.googleusercontent.com/Uo8lYb_Mv3a5y-oLu8TSGBvkg05vrJJdv16917a3FdrJ-Bx9Txw00SsNKpxwNLO4G1I8d6dxX4L2YqKNlEhsDYfi5nOonJ-KZMlQ6uBJTziEu3TGg8OFRBu7iz9DP57DyYM2JAUDkRy3BCZ-vczDXyhC3-D5xGfTZJtNYqoN3LgIG6RevzdyabySMErmmwm_MMoL3Xl1J8Fk0159-g5nONs90Y8m9YGThj1YOq68DqDUa-J5l5Qblz2sbL4peI5w8AR_-eWxZi1Y6mX9ei0vSR18GOWd3Is_pae0UeXYHaWiTcBl9zYG6hdxmiByTupYpStWWRVvi3cNtlWbGzvDQU6GxC2pjtjZJVm9kDPKXWehApC3hfWW6K5Yh3fGWUtJqELmzqOiUGRvJbjELaNK9Iwd1u_IF4SqvkQAPm1dpj7OMj7ztP4yRwuYlCDO9yYzwLrgmLvYEAL18FWCrNNRrA83z60vSTqyYWnX8wD4gEKCsR5NqD-yhykHb7MnI4ePHh0gdKiNICxSCZBS0KMlwlT8HHkQhCmP0D4mKfuO6IH51HXhrpNuW6TYcS2CvdJh43Jiz2mMsKYRPaVUkuDSQvZGGJFU_YC1=w1756-h1316-no)
