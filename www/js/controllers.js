@@ -8,14 +8,12 @@ angular.module('starter.controllers', [])
   var uid = authData.uid.toString();
 
   $rootScope.$on('LOGS_CHANGED', function() {
-    console.log('LOGS_CHANGED');
     $scope.logTemps = Logs.temp();
     $scope.logDays = Logs.date();
   });
 
   ////PASS LOG DATA TO CHART
   $scope.logTemps = Logs.temp();
-  console.log(Logs.temp());
   $scope.logDays = Logs.date();
   $scope.$on('$ionicView.afterEnter', function(e) {
     var ctx = document.getElementById("myChart");
@@ -91,40 +89,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('CalCtrl', function($scope, Logs){
-  Logs.calendar();
-  var newLogs = [{
-                  startTime: new Date(Date.UTC(2016, 6, 8)),
-                  endTime: new Date(Date.UTC(2016, 6, 9)),
-                  allDay: false
-                },
-                {
-                  startTime: new Date(Date.UTC(2016, 6, 8)),
-                  endTime: new Date(Date.UTC(2016, 6, 9)),
-                  allDay: false
-                },
-                {
-                  startTime: new Date(Date.UTC(2016, 6, 8)),
-                  endTime: new Date(Date.UTC(2016, 6, 9)),
-                  allDay: false
-                },
-              ];
-
-  // var newLogs = Logs.all().map(function(obj){
-  //   {
-  //     startTime: new Date(obj.time).toDateString(),
-  //     endTime: new Date(obj.time).toDateString(),
-  //     allDay: false
-  //     // title: obj.temp,
-  //   }
-  // });
-  // newLogs.forEach(function(obj){
-  //   obj.title = 'tacos';
-  //   obj.startTime = new Date(Date.UTC(2016, 6, 8));
-  //   obj.endTime = new Date(Date.UTC(2016, 6, 8));
-  //   obj.allDay = false;
-  //   delete el.temp;
-  // });
-
-  console.log(Logs.all());
-  $scope.eventSource = newLogs;
+  console.log(Logs.calendar());
+  $scope.eventSource = Logs.calendar();
 })

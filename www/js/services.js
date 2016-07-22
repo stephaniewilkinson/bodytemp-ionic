@@ -73,6 +73,84 @@ angular.module('starter.services', [])
   var logData = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
   var sortedLogs = logData.orderByChild('time');
   var logsArray = $firebaseArray(sortedLogs);
+  var calendarArray = logsArray;
+  var newArray =
+  [
+    {
+      startTime: new Date(Date.UTC(2016, 7, 22)),
+      endTime: new Date(Date.UTC(2016, 7, 23)),
+      allDay: false,
+      title: 'Temperature: 98.13'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 18)),
+      endTime: new Date(Date.UTC(2016, 7, 19)),
+      allDay: false,
+      title: 'Temperature: 97.7'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 16)),
+      endTime: new Date(Date.UTC(2016, 7, 17)),
+      allDay: false,
+      title: 'Temperature: 97.7'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 17)),
+      endTime: new Date(Date.UTC(2016, 7, 18)),
+      allDay: false,
+      title: 'Temperature: 98.3'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 14)),
+      endTime: new Date(Date.UTC(2016, 7, 15)),
+      allDay: false,
+      title: 'Temperature: 97.4'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 13)),
+      endTime: new Date(Date.UTC(2016, 7, 14)),
+      allDay: false,
+      title: 'Temperature: 97.27'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 12)),
+      endTime: new Date(Date.UTC(2016, 7, 13)),
+      allDay: false,
+      title: 'Temperature: 97.09'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 9)),
+      endTime: new Date(Date.UTC(2016, 7, 10)),
+      allDay: false,
+      title: 'Temperature: 96.43'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 5)),
+      endTime: new Date(Date.UTC(2016, 7, 6)),
+      allDay: false,
+      title: 'Temperature: 96.85'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 7, 1)),
+      endTime: new Date(Date.UTC(2016, 7, 2)),
+      allDay: false,
+      title: 'Temperature: 97.57'
+    },
+    {
+      startTime: new Date(Date.UTC(2016, 6, 30)),
+      endTime: new Date(Date.UTC(2016, 7, 1)),
+      allDay: false,
+      title: 'Temperature: 97.775'
+    },
+  ];
+  // calendarArray.map(function(obj){
+  //   {
+  //     startTime: new Date(obj.time).toDateString(),
+  //     endTime: new Date(obj.time).toDateString(),
+  //     allDay: false
+  //     title: obj.temp,
+  //   }
+  // }
 
   logsArray.$loaded().then(function() {
     deferred.resolve();
@@ -84,25 +162,9 @@ angular.module('starter.services', [])
 
   return {
     calendar: function(){
-      console.log(this.all);
-      // return [{
-      //           startTime: new Date(Date.UTC(2016, 6, 8)),
-      //           endTime: new Date(Date.UTC(2016, 6, 9)),
-      //           allDay: false
-      //         },
-      //         {
-      //           startTime: new Date(Date.UTC(2016, 6, 8)),
-      //           endTime: new Date(Date.UTC(2016, 6, 9)),
-      //           allDay: false
-      //         },
-      //         {
-      //           startTime: new Date(Date.UTC(2016, 6, 8)),
-      //           endTime: new Date(Date.UTC(2016, 6, 9)),
-      //           allDay: false
-      //         },
-      //       ];
+      return newArray;
     },
-    all: function() {
+    all: function(){
       return logsArray;
     },
     temp: function(){
