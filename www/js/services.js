@@ -62,15 +62,25 @@ angular.module('starter.services', [])
   return $firebaseAuth(usersRef);
 })
 
-.factory('Logs', function($firebaseArray, Firebase) {
+.factory('Logs', function($firebaseArray, Firebase, $q, $rootScope) {
   var ref = new Firebase("https://bodytemp.firebaseio.com/");
   var authData = ref.getAuth();
   var uid = authData.uid;
   console.log(uid);
 
+  var deferred = $q.defer();
+
   var logData = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
-  var logsArray = $firebaseArray(logData);
-  console.log(logsArray);
+  var sortedLogs = logData.orderByChild('time');
+  var logsArray = $firebaseArray(sortedLogs);
+
+  logsArray.$loaded().then(function() {
+    deferred.resolve();
+  });
+
+  logsArray.$watch(function(evt) {
+    $rootScope.$broadcast('LOGS_CHANGED');
+  });
 
   return {
     all: function() {
@@ -80,7 +90,7 @@ angular.module('starter.services', [])
       return logsArray.map(function(log){return log.temp});
     },
     date: function(){
-      return logsArray.map(function(log){return log.time});
+      return logsArray.map(function(log){return new Date(log.time).toDateString()});
     },
     remove: function(log) {
       logsArray.$remove(log);
@@ -93,5 +103,6 @@ angular.module('starter.services', [])
       }
       return null;
     },
+    ready: deferred.promise
   };
 });

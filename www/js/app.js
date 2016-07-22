@@ -46,6 +46,11 @@ angular.module('starter', ['ionic', 'chart.js', 'starter.controllers', 'starter.
         templateUrl: 'templates/tab-dash.html',
         controller: 'LogsCtrl'
       }
+    },
+    resolve: {
+      ready: function(Logs) {
+        return Logs.ready;
+      }
     }
   })
   .state('tab.signup', {

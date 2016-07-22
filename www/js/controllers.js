@@ -1,11 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('LogsCtrl', function($scope, Firebase, Logs, Users, UserRef, Chart) {
+.controller('LogsCtrl', function($scope, Firebase, Logs, Users, UserRef, Chart, $rootScope) {
 
   ////AUTH
   var ref = new Firebase("https://bodytemp.firebaseio.com/");
   var authData = ref.getAuth();
   var uid = authData.uid.toString();
+
+  $rootScope.$on('LOGS_CHANGED', function() {
+    console.log('LOGS_CHANGED');
+    $scope.logTemps = Logs.temp();
+    $scope.logDays = Logs.date();
+  });
 
   ////PASS LOG DATA TO CHART
   $scope.logTemps = Logs.temp();
@@ -21,16 +27,17 @@ angular.module('starter.controllers', [])
   $scope.remove = function(log){
     Logs.remove(log);
   };
-  ////Persist
+
+  ////PERSISTING LOGS TO Firebase
   var currentUserRef = new Firebase(`https://bodytemp.firebaseio.com/users/${uid}/logs`);
   $scope.addLog = function() {
+    console.log($scope.time);
     currentUserRef.push({
       'temp': $scope.temp,
-      'time': $scope.time.toString()
+      'time': $scope.time.toISOString()
     });
   };
 
-  ////PERSISTING LOGS TO Firebase
 })
 
 .controller('UsersCtrl', function($scope, Auth, Users, UserRef){
